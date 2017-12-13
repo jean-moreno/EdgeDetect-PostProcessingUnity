@@ -13,7 +13,7 @@ using EdgeDetectMode = EdgeDetectPostProcessing.EdgeDetectMode;
 //--------------------------------------------------------------------------------------------------------------------------------
 
 [System.Serializable]
-[PostProcess(typeof(EdgeDetectPostProcessingRenderer), PostProcessEvent.BeforeStack, "Unity Legacy/Edge Detection")]
+[PostProcess(typeof(EdgeDetectPostProcessingRenderer), PostProcessEvent.BeforeTransparent, "Unity Legacy/Edge Detection")]
 public sealed class EdgeDetectPostProcessing : PostProcessEffectSettings
 {
 	public enum EdgeDetectMode
