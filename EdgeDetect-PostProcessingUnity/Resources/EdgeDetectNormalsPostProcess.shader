@@ -48,6 +48,7 @@ Shader "Hidden/EdgeDetect-PostProcess"
 		//Settings
 		half4 _Sensitivity; 
 		half4 _BgColor;
+		uniform half4 _Color;
 		half _BgFade;
 		half _SampleDistance;
 		float _Exponent;
@@ -133,7 +134,11 @@ Shader "Hidden/EdgeDetect-PostProcess"
 			edge *= CheckSame(sample1.xy, DecodeFloatRG(sample1.zw), sample2);
 			edge *= CheckSame(sample3.xy, DecodeFloatRG(sample3.zw), sample4);
 
-			return edge * lerp(color, _BgColor, _BgFade);
+			//return edge * lerp(color, _BgColor, _BgFade);
+			if(edge > 0)	
+				return lerp(color, _BgColor, _BgFade);
+			else
+				return _Color;
 		}
 
 		//--------------------------------------------------------------------------------------------------------------------------------
@@ -176,7 +181,11 @@ Shader "Hidden/EdgeDetect-PostProcess"
 			edge *= CheckSame(centerNormal, centerDepth, sample1);
 			edge *= CheckSame(centerNormal, centerDepth, sample2);
 			
-			return edge * lerp(color, _BgColor, _BgFade);
+			//return edge * lerp(color, _BgColor, _BgFade);
+			if(edge > 0)	
+				return lerp(color, _BgColor, _BgFade);
+			else
+				return _Color;
 		}
 
 		//--------------------------------------------------------------------------------------------------------------------------------

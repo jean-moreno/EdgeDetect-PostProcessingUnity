@@ -43,6 +43,7 @@ public sealed class EdgeDetectPostProcessing : PostProcessEffectSettings
 	[Range(0f,1f)]
 	public FloatParameter edgesOnly = new FloatParameter() { value = 0.0f };
 	public ColorParameter edgesOnlyBgColor = new ColorParameter() { value =  Color.white };
+	public ColorParameter edgesColor = new ColorParameter() { value =  Color.black };
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -59,7 +60,8 @@ public sealed class EdgeDetectPostProcessingRenderer : PostProcessEffectRenderer
 		sheet.properties.SetFloat("_BgFade", settings.edgesOnly);
 		sheet.properties.SetFloat("_SampleDistance", settings.sampleDist);
 		sheet.properties.SetVector("_BgColor", settings.edgesOnlyBgColor.value);
-		sheet.properties.SetFloat("_Exponent", settings.edgeExp);
+		sheet.properties.SetVector("_Color", settings.edgesColor.value);
+        sheet.properties.SetFloat("_Exponent", settings.edgeExp);
 		sheet.properties.SetFloat("_Threshold", settings.lumThreshold);
 
 		context.command.BlitFullscreenTriangle(context.source, context.destination, sheet, (int)settings.mode.value);
