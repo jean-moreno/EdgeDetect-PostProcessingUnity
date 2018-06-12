@@ -8,7 +8,7 @@ Shader "Hidden/EdgeDetect-PostProcess"
 {
 	HLSLINCLUDE
 
-		#include "Assets/PostProcessing/Shaders/StdLib.hlsl"
+		#include "PostProcessing/Shaders/StdLib.hlsl"
 
 		//Functions and macros from UnityCG, because we can't include it here (causes duplicates from StdLib)
 		//Copied from UnityCG.cginc v2017.1.0f3
