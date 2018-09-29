@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------------
 // Port of the Legacy Unity "Edge Detect" image effect to Post Processing Stack v2
-// Jean Moreno, September 2017
+// Jean Moreno, 2017-2018
 // Legacy Image Effect: https://docs.unity3d.com/550/Documentation/Manual/script-EdgeDetectEffectNormals.html
 // Post Processing Stack v2: https://github.com/Unity-Technologies/PostProcessing/tree/v2
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -12,9 +12,7 @@ using EdgeDetectMode = EdgeDetectPostProcessing.EdgeDetectMode;
 
 //--------------------------------------------------------------------------------------------------------------------------------
 
-[System.Serializable]
-[PostProcess(typeof(EdgeDetectPostProcessingRenderer), PostProcessEvent.BeforeTransparent, "Unity Legacy/Edge Detection")]
-public sealed class EdgeDetectPostProcessing : PostProcessEffectSettings
+public class EdgeDetectPostProcessing : PostProcessEffectSettings
 {
 	public enum EdgeDetectMode
 	{
@@ -47,11 +45,14 @@ public sealed class EdgeDetectPostProcessing : PostProcessEffectSettings
 
 //--------------------------------------------------------------------------------------------------------------------------------
 
-public sealed class EdgeDetectPostProcessingRenderer : PostProcessEffectRenderer<EdgeDetectPostProcessing>
+public class EdgeDetectPostProcessingRenderer<T> : PostProcessEffectRenderer<T> where T : EdgeDetectPostProcessing
 {
 
 	public override void Render(PostProcessRenderContext context)
 	{
+		if (settings == null)
+			return;
+
 		var sheet = context.propertySheets.Get(Shader.Find("Hidden/EdgeDetect-PostProcess"));
 
 		Vector2 sensitivity = new Vector2(settings.sensitivityDepth, settings.sensitivityNormals);
@@ -67,9 +68,12 @@ public sealed class EdgeDetectPostProcessingRenderer : PostProcessEffectRenderer
 
 	public override DepthTextureMode GetCameraFlags()
 	{
-		if(settings.mode == EdgeDetectMode.SobelDepth || settings.mode == EdgeDetectMode.SobelDepthThin)
+		if (settings == null)
+			return DepthTextureMode.None;
+
+		if (settings.mode == EdgeDetectMode.SobelDepth || settings.mode == EdgeDetectMode.SobelDepthThin)
 			return DepthTextureMode.Depth;
-		else if(settings.mode == EdgeDetectMode.TriangleDepthNormals || settings.mode == EdgeDetectMode.RobertsCrossDepthNormals)
+		else if (settings.mode == EdgeDetectMode.TriangleDepthNormals || settings.mode == EdgeDetectMode.RobertsCrossDepthNormals)
 			return DepthTextureMode.DepthNormals;
 
 		return base.GetCameraFlags();
