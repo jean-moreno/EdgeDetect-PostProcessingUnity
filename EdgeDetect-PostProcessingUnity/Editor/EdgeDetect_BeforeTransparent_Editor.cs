@@ -5,7 +5,7 @@
 // Post Processing Stack v2: https://github.com/Unity-Technologies/PostProcessing/tree/v2
 //--------------------------------------------------------------------------------------------------------------------------------
 
-using UnityEngine.Rendering.PostProcessing;
+using UnityEditor.Rendering.PostProcessing;
 
 [PostProcessEditor(typeof(EdgeDetect_BeforeTransparent))]
 public sealed class EdgeDetect_BeforeTransparent_Editor : EdgeDetectPostProcessing_Editor<EdgeDetect_BeforeTransparent> { }
