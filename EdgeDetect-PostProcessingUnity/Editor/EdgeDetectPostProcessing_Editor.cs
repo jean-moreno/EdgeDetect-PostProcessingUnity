@@ -20,8 +20,9 @@ public class EdgeDetectPostProcessing_Editor<T> : PostProcessEffectEditor<T> whe
 	SerializedParameterOverride sampleDist;
 	SerializedParameterOverride edgesOnly;
 	SerializedParameterOverride edgesOnlyBgColor;
+	SerializedParameterOverride edgesColor;
 
-	GUIContent gc_mode = new GUIContent("Mode");
+    GUIContent gc_mode = new GUIContent("Mode");
 	GUIContent gc_sensitivityDepth = new GUIContent(" Depth Sensitivity");
 	GUIContent gc_sensitivityNormals = new GUIContent(" Normals Sensitivity");
 	GUIContent gc_lumThreshold = new GUIContent(" Luminance Threshold");
@@ -29,8 +30,9 @@ public class EdgeDetectPostProcessing_Editor<T> : PostProcessEffectEditor<T> whe
 	GUIContent gc_sampleDist = new GUIContent(" Sample Distance");
 	GUIContent gc_edgesOnly = new GUIContent(" Edges Only");
 	GUIContent gc_edgesOnlyBgColor = new GUIContent(" Color");
+	GUIContent gc_edgesColor = new GUIContent("Edges Color");
 
-	string gc_description = "Detects spatial differences and converts into black outlines\n\nLegacy image effect from previous Unity versions ported to Post Processing v2";
+    string gc_description = "Detects spatial differences and converts into black outlines\n\nLegacy image effect from previous Unity versions ported to Post Processing v2";
 	GUIContent gc_background = new GUIContent("Background Options");
 
 	public override void OnEnable()
@@ -43,7 +45,8 @@ public class EdgeDetectPostProcessing_Editor<T> : PostProcessEffectEditor<T> whe
 		sampleDist = FindParameterOverride(x => x.sampleDist);
 		edgesOnly = FindParameterOverride(x => x.edgesOnly);
 		edgesOnlyBgColor = FindParameterOverride(x => x.edgesOnlyBgColor);
-	}
+		edgesColor = FindParameterOverride(x => x.edgesColor);
+    }
 
 	public override void OnInspectorGUI()
 	{
@@ -83,5 +86,6 @@ public class EdgeDetectPostProcessing_Editor<T> : PostProcessEffectEditor<T> whe
 		GUILayout.Label(gc_background);
 		PropertyField(edgesOnly, gc_edgesOnly);
 		PropertyField(edgesOnlyBgColor, gc_edgesOnlyBgColor);
-	}
+		PropertyField(edgesColor, gc_edgesColor);
+    }
 }
