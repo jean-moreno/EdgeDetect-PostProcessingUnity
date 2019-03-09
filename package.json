@@ -1,0 +1,7 @@
+{
+    "name": "com.popcron.pp-edge-detection",
+    "displayName": "Popcron Edge Detection for PPv2",
+    "version": "1.0.0",
+    "unity": "2018.3.0f2",
+    "description": "A port of the old edge detection post processing effect for the v2 stack."
+}
