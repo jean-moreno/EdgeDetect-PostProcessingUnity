@@ -48,6 +48,7 @@ Shader "Hidden/EdgeDetect-PostProcess"
 		//Settings
 		half4 _Sensitivity; 
 		half4 _BgColor;
+		half4 _EdgeColor;
 		half _BgFade;
 		half _SampleDistance;
 		float _Exponent;
@@ -133,7 +134,17 @@ Shader "Hidden/EdgeDetect-PostProcess"
 			edge *= CheckSame(sample1.xy, DecodeFloatRG(sample1.zw), sample2);
 			edge *= CheckSame(sample3.xy, DecodeFloatRG(sample3.zw), sample4);
 
+			if (edge <= 0)
+			{
+				return _EdgeColor;
+			}
+
 			return edge * lerp(color, _BgColor, _BgFade);
+
+			//if (edge > 0) return lerp(color, _BgColor, _BgFade);
+			//else return _EdgeColor;
+			
+		
 		}
 
 		//--------------------------------------------------------------------------------------------------------------------------------
@@ -176,7 +187,14 @@ Shader "Hidden/EdgeDetect-PostProcess"
 			edge *= CheckSame(centerNormal, centerDepth, sample1);
 			edge *= CheckSame(centerNormal, centerDepth, sample2);
 			
+			if (edge <= 0)
+			{
+				return _EdgeColor;
+			}
+
 			return edge * lerp(color, _BgColor, _BgFade);
+			//if (edge > 0) return lerp(color, _BgColor, _BgFade);
+			//else return _EdgeColor;
 		}
 
 		//--------------------------------------------------------------------------------------------------------------------------------
@@ -248,7 +266,15 @@ Shader "Hidden/EdgeDetect-PostProcess"
 			float Sobel = sqrt(SobelX * SobelX + SobelY * SobelY);
 
 			Sobel = 1.0-pow(saturate(Sobel), _Exponent);
-			return Sobel * lerp(color, _BgColor, _BgFade);
+
+			if (Sobel <= 0.99)
+			{
+				float4 FadedEdgeColor = lerp(color, _BgColor, _BgFade);
+				return lerp(_EdgeColor, FadedEdgeColor, Sobel);
+			}
+
+			float4 r = Sobel * lerp(color, _BgColor, _BgFade);
+			return r;
 		}
 
 		//--------------------------------------------------------------------------------------------------------------------------------
@@ -287,6 +313,11 @@ Shader "Hidden/EdgeDetect-PostProcess"
 			len = step(len, _Threshold);
 			//if(len >= _Threshold)
 			//	color.rgb = 0;
+
+			if (len < 1)
+			{
+				return _EdgeColor;
+			}
 
 			return len * lerp(color, _BgColor, _BgFade);
 		}
