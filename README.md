@@ -1,4 +1,4 @@
-![Screenshot](https://cdn.discordapp.com/attachments/377316629220032523/553986090357358592/unknown.png)
+![Screenshot](https://cdn.discordapp.com/attachments/377316629220032523/554392474299138058/unknown.png)
 # Post Processing Edge Detection
 This is a port of the old edge detection image effect for the v2 post processing stack. With UPM integration.
 
