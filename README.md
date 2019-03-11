@@ -1,6 +1,6 @@
 ![Screenshot](https://cdn.discordapp.com/attachments/377316629220032523/554392474299138058/unknown.png)
 # Post Processing Edge Detection
-This is a port of the old edge detection image effect for the v2 post processing stack. With UPM integration.
+This is a port of the old edge detection image effect for the Post Processing V2 stack. With UPM integration and custom edge colour support.
 
 ## Installation
 If using 2018.3.x, you can add a new entry to the manifest.json file in your Packages folder:
