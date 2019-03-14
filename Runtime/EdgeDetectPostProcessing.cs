@@ -1,4 +1,4 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
 // Port of the Legacy Unity "Edge Detect" image effect to Post Processing Stack v2
 // Jean Moreno, 2017-2018
 // Phill Damaskin, 2019
@@ -7,7 +7,7 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 
 using System;
-using static UnityEngine.Rendering.PostProcessing.EdgeDetectPostProcessing;
+using UnityEngine.Rendering.PostProcessing;
 
 namespace UnityEngine.Rendering.PostProcessing
 {
@@ -68,11 +68,11 @@ namespace UnityEngine.Rendering.PostProcessing
         {
             if (settings == null) return DepthTextureMode.None;
 
-            if (settings.mode == EdgeDetectMode.SobelDepth || settings.mode == EdgeDetectMode.SobelDepthThin)
+            if (settings.mode == EdgeDetectPostProcessing.EdgeDetectMode.SobelDepth || settings.mode == EdgeDetectPostProcessing.EdgeDetectMode.SobelDepthThin)
             {
                 return DepthTextureMode.Depth;
             }
-            else if (settings.mode == EdgeDetectMode.TriangleDepthNormals || settings.mode == EdgeDetectMode.RobertsCrossDepthNormals)
+            else if (settings.mode == EdgeDetectPostProcessing.EdgeDetectMode.TriangleDepthNormals || settings.mode == EdgeDetectPostProcessing.EdgeDetectMode.RobertsCrossDepthNormals)
             {
                 return DepthTextureMode.DepthNormals;
             }
