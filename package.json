@@ -3,7 +3,7 @@
     "displayName": "Edge Detection for PPv2",
     "version": "1.2.1",
     "unity": "2018.3",
-    "description": "A port of the old edge detection post processing effect for the v2 stack."
+    "description": "A port of the old edge detection post processing effect for the v2 stack.",
     "dependencies": {
     	"com.unity.postprocessing": "2.1.6",
     }
