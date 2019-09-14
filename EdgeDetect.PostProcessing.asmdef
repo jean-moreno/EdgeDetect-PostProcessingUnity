@@ -1,0 +1,15 @@
+{
+    "name": "EdgeDetect.PostProcessing",
+    "references": [
+        "GUID:d60799ab2a985554ea1a39cd38695018"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
